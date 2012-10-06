@@ -83,7 +83,7 @@ selectView.delegate('.repo', 'click', function(e) {
 
 function waitForButton(owner, repo) {
   $('.admin-link').attr('src', repoUrl(owner, repo) + '/admin');
-  onSocketOpensource(function() {
+  socket.on('opensource', function() {
     openSource(credentials.login, credentials.password, owner, repo)
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log(arguments);
@@ -126,7 +126,3 @@ function showRepo(owner, repo) {
 var opensourced = false;
 var socket = io.connect(location.href);
 
-var onSocketOpensource = _.partial(socket, 'on', 'opensource');
-var fakeButtonPress = function(callback) {
-  setTimeout(callback, 1000);
-};
