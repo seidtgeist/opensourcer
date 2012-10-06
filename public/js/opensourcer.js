@@ -83,7 +83,7 @@ selectView.delegate('.repo', 'click', function(e) {
 
 function waitForButton(owner, repo) {
   $('.admin-link').attr('src', repoUrl(owner, repo) + '/admin');
-  fakeButtonPress(function() {
+  onSocketOpensource(function() {
     openSource(credentials.login, credentials.password, owner, repo)
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log(arguments);
