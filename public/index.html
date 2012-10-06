@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Open Sourcer</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+.button-status {
+  color: #aaa;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.container {
+  margin-top: 40px;
+}
+
+.cat {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: black;
+  line-height: 1.5;
+  width: 100%;
+  height: 1000px;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+.cat div {
+  color: white;
+  text-shadow: black 3px 3px 0px;
+  font-family: impact, sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+}
+    </style>
+  </head>
+  <body>
+
+    <div class="button-status">
+      Button Status:
+      <div class="good text-success hide">Connected</div>
+      <div class="bad text-error hide">Not connected<small>Check node
+      server and usb connection, reload and check the usb connection
+      to the button!</small></div>
+      <div class="test text-info hide">Meow!</div>
+    </div>
+
+    <div class="container" id="login-view">
+      <div class="hero-unit">
+        <h1>Open Sourcer</h1>
+        <p>Open sorce on stage.</p>
+      </div>
+
+      <p>
+        Your username and password will be used to contact the GitHub
+        API directly from your browser.
+      </p>
+
+      <p class="error text-error hide"></p>
+
+      <form class="form-horizontal login-form">
+        <div class="control-group">
+          <label class="control-label" for="inputLogin">GitHub Login</label>
+          <div class="controls">
+            <input type="text" id="inputLogin" placeholder="Login">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputPassword">GitHub Password</label>
+          <div class="controls">
+            <input type="password" id="inputPassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">Sign in</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container hide" id="select-view">
+      <div class="page-header">
+        <h1>Select a Repository <small>The repository you select will
+            be open sourced shortly after you pushed the button.</small></h1>
+      </div>
+      <ul class="repos">
+      </ul>
+    </div>
+
+    <div class="container hide" id="ready-view">
+      <div class="hero-unit">
+        <h1>Ready when you are.</h1>
+        <p>Will open source :owner/:repo</p>
+      </div>
+      <div class="text-error error hide">
+        An error occured. Well damn, but <a href="/">let's try
+        again</a> or <a class="admin-link" href="">use the admin</a>
+        <br><br>
+        Error:
+      </div>
+    </div>
+
+    <div class="cat hide">
+      <div class="line line1 hide">GIT COMITTENKITTEN SAYS</div>
+      <div class="line line2 hide">SAY MEOW TO JED, MEOW.</div>
+      <div class="line line3 hide">MEOWF WIEDERSEHEN!</div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/lodash.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/base64.js"></script>
+    <script src="/js/opensourcer.js"></script>
+  </body>
+</html>
