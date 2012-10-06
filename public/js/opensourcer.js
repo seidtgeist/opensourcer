@@ -85,19 +85,10 @@ function waitForButton(owner, repo) {
   $('.admin-link').attr('src', repoUrl(owner, repo) + '/admin');
   $('.owner').html(owner);
   $('.repo').html(repo);
-  socket.on('opensource', function() {
-    openSource(credentials.login, credentials.password, owner, repo)
-      .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(arguments);
-        readyView.find('.error')
-          .append(JSON.parse(jqXHR.responseText).message)
-          .show();
-      })
-      .done(function() {
-        showCountdown(function(){
-          showRepo(owner, repo);
-        });
-      });
+  socket.on('opensource', animateAndOpenSource.bind(null, owner, repo));
+  $('body').bind('keydown', function(e) {
+    if (e.keyCode === 79)
+      animateAndOpenSource(owner, repo);
   });
 }
 
@@ -123,6 +114,13 @@ function showCountdown(callback) {
 
 function showRepo(owner, repo) {
   location.href = repoUrl(owner, repo);
+}
+
+function animateAndOpenSource(owner, repo) {
+  openSource(credentials.login, credentials.password, owner, repo);
+  showCountdown(function(){
+    showRepo(owner, repo);
+  });
 }
 
 var opensourced = false;
